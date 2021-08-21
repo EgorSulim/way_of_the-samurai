@@ -1,0 +1,11 @@
+
+.Content{
+
+    grid-area: C;
+    background-color: aqua;
+}
+.Content img{
+    width: 500px;
+    grid-area: C;
+    background-color: aqua;
+}
