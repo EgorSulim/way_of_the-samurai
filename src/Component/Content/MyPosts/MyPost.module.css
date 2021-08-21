@@ -1,0 +1,8 @@
+.profile {
+    background-color: azure;
+    grid-area: p;
+}
+
+.images img{
+    width: 500px;
+}

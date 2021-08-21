@@ -1,19 +1,24 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
-import {Header} from "./components/Header/Header";
-import {Content} from "./components/Content/Content";
-import {Navigation} from "./components/Navigation/Navigation";
+import classes from './App.module.css'
+import {MyPost} from './Component/Content/MyPosts/MyPost';
+import {Header} from "./Component/Header/Header";
+import {Navbar} from "./Component/Navbar/Navbar";
+import {Messages} from "./Component/Content/Messages/Messages";
+import {BrowserRouter, Route} from 'react-router-dom';
 
 
 function App() {
     return (
-        <div className="App">
-            <Header/>
-            <Navigation/>
-            <Content/>
+        <BrowserRouter>
+            <div className={classes.App}>
+                <Navbar/>
+                <Header/>
+                <Route path='/profile' component={MyPost}/>
+                <Route path='/messages' component={Messages}/>
+            </div>
+        </BrowserRouter>
 
-        </div>
     );
 }
 

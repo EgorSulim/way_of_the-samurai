@@ -1,0 +1,16 @@
+.nickname {
+
+}
+
+.mess {
+
+}
+.profile {
+    display: grid;
+    background-color: azure;
+    grid-template-columns: 2fr 10fr;
+}
+
+.images img{
+    width: 500px;
+}

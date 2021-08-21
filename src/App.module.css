@@ -1,0 +1,20 @@
+.App {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    grid-template-areas:
+            "h h"
+            "n p";
+
+}
+
+.profile {
+    background-color: azure;
+    grid-area: p;
+}
+
+.images img {
+    width: 500px;
+}
+
+
+
