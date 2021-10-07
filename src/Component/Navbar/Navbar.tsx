@@ -6,12 +6,11 @@ import classes from "./Navbar.module.css"
 export const Navbar=()=>{
     return(
         <div className={classes.nav}>
-            <div><NavLink to='/profile'>Profile</NavLink></div>
-            <div><NavLink to='/messages'>Messages</NavLink></div>
-            <div>News</div>
-            <div>Music</div>
-
-            <div>Settings</div>
+            <div className={classes.item}><NavLink activeClassName={classes.active} to='/profile'>Profile</NavLink></div>
+            <div className={classes.item}><NavLink activeClassName={classes.active} to='/messages'>Messages</NavLink></div>
+            <div className={classes.item}><NavLink activeClassName={classes.active} to={'/news'}>News</NavLink></div>
+            <div className={classes.item}><NavLink activeClassName={classes.active} to={'/music'}>Music</NavLink></div>
+            <div className={classes.item}><NavLink activeClassName={classes.active} to={'/settings'}>Settings</NavLink></div>
         </div>
     )
 }

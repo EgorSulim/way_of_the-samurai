@@ -1,23 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
 import classes from './App.module.css'
-import {MyPost} from './Component/Content/MyPosts/MyPost';
 import {Header} from "./Component/Header/Header";
 import {Navbar} from "./Component/Navbar/Navbar";
-import {Messages} from "./Component/Content/Messages/Messages";
+import {Messages} from "./Component/Messages/Messages";
 import {BrowserRouter, Route} from 'react-router-dom';
+import {Profile} from "./Component/Profile/Profile";
+import {RootStateType, storeType} from "./Redux/state";
 
+type propsType = {
+    store: storeType
+}
 
-function App() {
+function App(props: propsType) {
+    const state = props.store.getState()
     return (
-        <BrowserRouter>
-            <div className={classes.App}>
-                <Navbar/>
-                <Header/>
-                <Route path='/profile' component={MyPost}/>
-                <Route path='/messages' component={Messages}/>
-            </div>
-        </BrowserRouter>
+
+        <div className={classes.App}>
+            <Navbar/>
+            <Header/>
+            <Route path='/profile' render={() => <Profile posts={state.profilePage}
+                                                          dispatch={props.store.dispatch.bind(props.store)}
+            />}/>
+            <Route path='/messages' render={() => <Messages messagesPage={state.messagesPage}/>}/>
+        </div>
 
     );
 }

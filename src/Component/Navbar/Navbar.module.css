@@ -2,3 +2,13 @@
     background-color: bisque;
     grid-area: n;
 }
+
+.item a {
+    color: black;
+    text-decoration: none;
+
+}
+
+.item a.active {
+    color: white;
+}

@@ -2,7 +2,7 @@ import React from "react";
 import classes from "./Post.module.css";
 
 type PostType = {
-    message: string
+    message: string|undefined
     like: number
 }
 
