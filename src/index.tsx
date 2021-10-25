@@ -2,7 +2,9 @@ import ReactDOM from "react-dom";
 import {BrowserRouter} from "react-router-dom";
 import React from "react";
 import App from "./App";
-import {store} from "./Redux/state";
+import {store} from "./Redux/redux-store";
+import {Provider} from "react-redux";
+
 
 
 
@@ -10,7 +12,7 @@ import {store} from "./Redux/state";
 export let renderEntireTree = () => ReactDOM.render(
     <BrowserRouter>
         <React.StrictMode>
-            <App store={store}/>
+            <Provider store={store}><App/></Provider>
         </React.StrictMode>
     </BrowserRouter>,
     document.getElementById('root')
