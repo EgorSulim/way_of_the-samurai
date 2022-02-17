@@ -40,9 +40,9 @@ let initialState = {
 export const usersReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {
     switch (action.type) {
         case 'FOLLOW':
-            return {...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: false} : u)}
-        case 'UNFOLLOW':
             return {...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: true} : u)}
+        case 'UNFOLLOW':
+            return {...state, users: state.users.map(u => u.id === action.userId ? {...u, followed: false} : u)}
         case 'SET-USERS':
             return {...state, users: action.users}
         case "SET-CURRENT-PAGE":

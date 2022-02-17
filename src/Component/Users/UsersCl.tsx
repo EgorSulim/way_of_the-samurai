@@ -3,7 +3,8 @@ import image from "../../assets/images/standoff_160.jpg";
 import classes from "./Users.module.css";
 import React from "react";
 import {initialStateType} from "../../Redux/userReducer";
-import { NavLink } from "react-router-dom";
+import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 type propsType = {
     usersPage: initialStateType
@@ -19,35 +20,61 @@ export const Users = (props: propsType) => {
     let pagesCount = Math.ceil(props.totalCount / props.pageSize)
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
-        pages.push(i)}
-        return (
-            <div className={classes.users}>
-                <Pagination onPageChanged={props.onPageChanged}
-                            currentPage={props.currentPage}
-                            pageSize={props.pageSize}
-                            totalCount={props.totalCount}
-                            portionSize={10}
-                />
-                {props.usersPage.users.map((m) => {
-                    return (
-                        <div>
-                            <div>
-                            <NavLink to={'/profile/'+m.id}><img src={m.photos.small !== null ? m.photos.small : image}
-                                className={classes.userPhoto}/>
-                            </NavLink>
-                                <div>{m.name}</div>
-                                <div>{m.status}</div>
-                            </div>
-                            {m.followed ? <button onClick={() => props.follow(m.id)}>follow</button> :
-                                <button onClick={() => props.unfollow(m.id)}>unfollow</button>}
-                        </div>
-                    )
-                })}
-                <Pagination onPageChanged={props.onPageChanged}
-                            currentPage={props.currentPage}
-                            pageSize={props.pageSize}
-                            totalCount={props.totalCount}
-                            portionSize={10}
-                />
-        )    </div>)
+        pages.push(i)
     }
+    return (
+        <div className={classes.users}>
+            <Pagination onPageChanged={props.onPageChanged}
+                        currentPage={props.currentPage}
+                        pageSize={props.pageSize}
+                        totalCount={props.totalCount}
+                        portionSize={10}
+            />
+            {props.usersPage.users.map((m) => {
+                return (
+                    <div>
+                        <div>
+                            <NavLink to={'/profile/' + m.id}><img src={m.photos.small !== null ? m.photos.small : image}
+                                                                  className={classes.userPhoto}/>
+                            </NavLink>
+                            <div>{m.name}</div>
+                            <div>{m.status}</div>
+                        </div>
+                        {m.followed
+                            ?<button onClick={() =>{
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${m.id}`,
+                                    {
+                                        withCredentials: true,
+                                        headers: {"API-KEY": "e8421c8d-f20b-4037-99e1-c0e74f0f447b"}
+                                    })
+                                    .then(res=>{
+                                        if(res.data.resultCode===0){
+                                            props.unfollow(m.id)}
+                                    })
+                            }}>unfollow</button>
+                            :<button onClick={() => {
+                                axios.defaults.withCredentials=true
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${m.id}`, {},
+                                    {
+                                        withCredentials: true,
+                                        headers: {"API-KEY": "e8421c8d-f20b-4037-99e1-c0e74f0f447b"}
+                                    })
+                                    .then(res=>{
+                                        /*if(res.data.resultCode===0)*/{
+                                        props.follow(m.id)}
+                                    })
+
+                                }}>follow</button>
+
+                        }
+                    </div>
+                )
+            })}
+                <Pagination onPageChanged={props.onPageChanged}
+                currentPage={props.currentPage}
+                pageSize={props.pageSize}
+                totalCount={props.totalCount}
+                portionSize={10}
+                />
+                ) </div>)
+            }

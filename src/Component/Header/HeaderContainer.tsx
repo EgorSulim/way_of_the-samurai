@@ -24,7 +24,8 @@ const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => ({
 
 class HeaderContainer extends React.Component<any> {
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{withCredentials:true})
+        axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,{withCredentials:true,
+        headers:{'API-KEY':'e8421c8d-f20b-4037-99e1-c0e74f0f447b'}})
             .then(res=> {
                 if (res.data.resultCode === 0) {
                     debugger
