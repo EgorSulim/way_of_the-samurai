@@ -1,5 +1,3 @@
-import React from "react";
-
 export type ActionType =
     followActionType
     | unFollowActionType
@@ -15,9 +13,9 @@ export type UserType = {
     status: string
     followed: boolean
     location: { city: string, country: string }
-    photos:{
-        small:string
-        large:string
+    photos: {
+        small: string
+        large: string
     }
 }
 
@@ -26,7 +24,7 @@ export type initialStateType = {
     pageSize: number
     totalCount: number
     currentPage: number
-    isFetching:boolean
+    isFetching: boolean
 }
 
 let initialState = {
@@ -34,7 +32,7 @@ let initialState = {
     pageSize: 20,
     totalCount: 0,
     currentPage: 1,
-    isFetching:false
+    isFetching: false
 }
 
 export const usersReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {
@@ -62,7 +60,7 @@ export type unFollowActionType = ReturnType<typeof unFollowAC>
 export type setUsersActionType = ReturnType<typeof setUsersAC>
 export type setCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
 export type setTotalCountActionType = ReturnType<typeof setTotalCountAC>
-export type toggleIsFetchingActionType=ReturnType<typeof toggleIsFetchingAC>
+export type toggleIsFetchingActionType = ReturnType<typeof toggleIsFetchingAC>
 
 export const setTotalCountAC = (totalCount: number) => {
     return {
@@ -96,7 +94,7 @@ export const setUsersAC = (users: Array<UserType>) => {
         users
     } as const
 }
-export const toggleIsFetchingAC = (isFetching:boolean) => {
+export const toggleIsFetchingAC = (isFetching: boolean) => {
     return {
         type: 'TOGGLE-IS-FETCHING',
         isFetching

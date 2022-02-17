@@ -1,5 +1,3 @@
-import React from "react";
-
 type ActionsType = SetUserDataActionType
 
 let initialState = {
@@ -23,7 +21,7 @@ export type HeaderStateType = {
 export const authReducer = (state: HeaderStateType = initialState, action: ActionsType): HeaderStateType => {
     switch (action.type) {
         case 'SET-USER-DATA':
-            return {...state, data:action.data}
+            return {...state, data: action.data}
         default:
             return state
     }

@@ -31,29 +31,32 @@ type MapStateToPropsType = {
     }
 }
 
-const mapStateToProps = (state: AppRootStateType):MapStateToPropsType=> ({
-    profile:state.profilePage.profile
+const mapStateToProps = (state: AppRootStateType): MapStateToPropsType => ({
+    profile: state.profilePage.profile
 })
 
 export class ProfileContainers extends React.Component<any> {
     componentDidMount() {
-        let userID=this.props.match.params.userId
-        if(!userID){userID=3}
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/`+userID)
+        let userID = this.props.match.params.userId
+        if (!userID) {
+            userID = 3
+        }
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userID)
             .then(response => {
-                this.props.setUserProfile(response.data)})
+                this.props.setUserProfile(response.data)
+            })
     }
 
     render() {
 
         return (<>
-                <Profile {...this.props} profile={this.props.profile} />
+                <Profile {...this.props} profile={this.props.profile}/>
             </>
         )
     }
 }
 
-let WithUrlDataContainerComponent=withRouter(ProfileContainers)
-export const ProfileContainer=connect(mapStateToProps,{setUserProfile:setUserProfileAC})(WithUrlDataContainerComponent)
+let WithUrlDataContainerComponent = withRouter(ProfileContainers)
+export const ProfileContainer = connect(mapStateToProps, {setUserProfile: setUserProfileAC})(WithUrlDataContainerComponent)
 
 

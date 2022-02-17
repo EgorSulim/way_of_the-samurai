@@ -41,40 +41,43 @@ export const Users = (props: propsType) => {
                             <div>{m.status}</div>
                         </div>
                         {m.followed
-                            ?<button onClick={() =>{
+                            ? <button onClick={() => {
                                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${m.id}`,
                                     {
                                         withCredentials: true,
                                         headers: {"API-KEY": "e8421c8d-f20b-4037-99e1-c0e74f0f447b"}
                                     })
-                                    .then(res=>{
-                                        if(res.data.resultCode===0){
-                                            props.unfollow(m.id)}
+                                    .then(res => {
+                                        if (res.data.resultCode === 0) {
+                                            props.unfollow(m.id)
+                                        }
                                     })
                             }}>unfollow</button>
-                            :<button onClick={() => {
-                                axios.defaults.withCredentials=true
+                            : <button onClick={() => {
+                                axios.defaults.withCredentials = true
                                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${m.id}`, {},
                                     {
                                         withCredentials: true,
                                         headers: {"API-KEY": "e8421c8d-f20b-4037-99e1-c0e74f0f447b"}
                                     })
-                                    .then(res=>{
-                                        /*if(res.data.resultCode===0)*/{
-                                        props.follow(m.id)}
+                                    .then(res => {
+                                        /*if(res.data.resultCode===0)*/
+                                        {
+                                            props.follow(m.id)
+                                        }
                                     })
 
-                                }}>follow</button>
+                            }}>follow</button>
 
                         }
                     </div>
                 )
             })}
-                <Pagination onPageChanged={props.onPageChanged}
-                currentPage={props.currentPage}
-                pageSize={props.pageSize}
-                totalCount={props.totalCount}
-                portionSize={10}
-                />
-                ) </div>)
-            }
+            <Pagination onPageChanged={props.onPageChanged}
+                        currentPage={props.currentPage}
+                        pageSize={props.pageSize}
+                        totalCount={props.totalCount}
+                        portionSize={10}
+            />
+            ) </div>)
+}
