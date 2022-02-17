@@ -1,5 +1,16 @@
+
 .header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
     background-color: aqua;
     grid-area: h;
 
+}
+.p {
+    position: relative;
+}
+.loginBlock a {
+    margin-left: 12pc;
+    color: white;
 }

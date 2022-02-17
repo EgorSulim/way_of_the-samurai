@@ -1,7 +1,5 @@
-import classes from "./MyPosts/MyPost.module.css"
+import classes from "../MyPosts/MyPost.module.css";
 import React from "react";
-import {MyPostContainer} from "./MyPosts/MyPostContainer";
-import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 
 type PropsType = {
     profile: {
@@ -26,12 +24,10 @@ type PropsType = {
     }
 }
 
-export const Profile = (props: PropsType) => {
-
-    return (
-        <div className={classes.profile}>
-            <ProfileInfo profile={props.profile}/>
-            <MyPostContainer/>
+export const ProfileInfo = (props: PropsType) => {
+    return <div className={classes.profile}>
+        <div className={classes.images}>
+            <img src={props.profile.photos.large}/>
         </div>
-    )
+    </div>
 }

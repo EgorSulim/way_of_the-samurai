@@ -13,13 +13,12 @@ export const Users=(props:UsersPropsType)=>{
     if(props.usersPage.users.length===0){
         axios.get('https://social-network.samuraijs.com/api/1.0/users').then(response=>{props.setUsers(response.data.items)})
     }
-    return(<div>
+    return(<div >
         {props.usersPage.users.map((m)=>{
             return(
                  <div>
-
-                     <div><img src={m.photoUrl} className={classes.userPhoto}/>
-                         <div>{m.fullName}</div>
+                     <div><img src={m.photos.small} className={classes.userPhoto}/>
+                         <div>{m.name}</div>
                          <div>{m.status}</div>
                      </div>
                      {m.followed? <button onClick={()=>props.follow(m.id)}>follow</button>:<button onClick={()=>props.unfollow(m.id)}>unfollow</button>}

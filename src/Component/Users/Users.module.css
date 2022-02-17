@@ -1,3 +1,9 @@
+.users{
+    background-color: azure;
+}
 .userPhoto{
     width:150px
+}
+.selectedPage{
+    font-weight: bold;
 }
