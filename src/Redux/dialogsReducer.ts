@@ -1,4 +1,4 @@
-import {ActionsType} from "./ProfileReducer";
+import {ActionsType} from "./profileReducer";
 
 export type MessagesPageType = {
     messages: Array<MessageType>

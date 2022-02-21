@@ -5,6 +5,7 @@ export type ActionType =
     | setCurrentPageActionType
     | setTotalCountActionType
     | toggleIsFetchingActionType
+    | toggleIsFollowingProgressType
 
 
 export type UserType = {
@@ -25,6 +26,8 @@ export type initialStateType = {
     totalCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: [boolean,number]
+    userId: number
 }
 
 let initialState = {
@@ -32,9 +35,12 @@ let initialState = {
     pageSize: 20,
     totalCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: [false,2],
+    userId: 2
 }
 
+//@ts-ignore
 export const usersReducer = (state: initialStateType = initialState, action: ActionType): initialStateType => {
     switch (action.type) {
         case 'FOLLOW':
@@ -49,6 +55,10 @@ export const usersReducer = (state: initialStateType = initialState, action: Act
             return {...state, totalCount: action.totalCount}
         case "TOGGLE-IS-FETCHING":
             return {...state, isFetching: action.isFetching}
+        case "TOGGLE-IS-FOLLOWING-PROGRESS":
+            return {
+                ...state, followingInProgress: action.followingInProgress
+            }
         default:
             return state
     }
@@ -61,6 +71,7 @@ export type setUsersActionType = ReturnType<typeof setUsersAC>
 export type setCurrentPageActionType = ReturnType<typeof setCurrentPageAC>
 export type setTotalCountActionType = ReturnType<typeof setTotalCountAC>
 export type toggleIsFetchingActionType = ReturnType<typeof toggleIsFetchingAC>
+export type toggleIsFollowingProgressType = ReturnType<typeof toggleIsFollowingProgressAC>
 
 export const setTotalCountAC = (totalCount: number) => {
     return {
@@ -98,5 +109,13 @@ export const toggleIsFetchingAC = (isFetching: boolean) => {
     return {
         type: 'TOGGLE-IS-FETCHING',
         isFetching
+    } as const
+}
+
+export const toggleIsFollowingProgressAC = (followingInProgress: [boolean,number], userId: number) => {
+    return {
+        type: 'TOGGLE-IS-FOLLOWING-PROGRESS',
+        followingInProgress,
+        userId
     } as const
 }

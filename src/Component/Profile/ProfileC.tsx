@@ -1,5 +1,5 @@
 import React from "react";
-import {setUserProfileAC} from "../../Redux/ProfileReducer";
+import {setUserProfileAC} from "../../Redux/profileReducer";
 import axios from "axios";
 import {Profile} from "./Profile";
 import {AppRootStateType} from "../../Redux/redux-store";

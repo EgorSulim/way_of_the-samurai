@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import {ActionsType} from "../../Redux/ProfileReducer";
+import {ActionsType} from "../../Redux/profileReducer";
 import {MessagesPageType, sendMessageAC, updateNewMessageBodyAC} from "../../Redux/dialogsReducer";
 import {Dialogs} from "./Dialogs";
 import {connect, MapStateToProps} from "react-redux";

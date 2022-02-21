@@ -14,6 +14,8 @@ type propsType = {
     totalCount: number
     follow: (userId: number) => void
     unfollow: (userID: number) => void
+    toggleFollowingProgress:(followingInProgress: [boolean, number],userId:number)=>void
+    followingInProgress: [boolean, number]
 }
 
 export const Users = (props: propsType) => {
@@ -41,7 +43,8 @@ export const Users = (props: propsType) => {
                             <div>{m.status}</div>
                         </div>
                         {m.followed
-                            ? <button onClick={() => {
+                            ? <button disabled={props.followingInProgress.some(id=>id===m.id)} onClick={() => {
+                                props.toggleFollowingProgress([true,m.id],m.id)
                                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${m.id}`,
                                     {
                                         withCredentials: true,
@@ -50,10 +53,12 @@ export const Users = (props: propsType) => {
                                     .then(res => {
                                         if (res.data.resultCode === 0) {
                                             props.unfollow(m.id)
+                                            props.toggleFollowingProgress([false,m.id],m.id)
                                         }
                                     })
                             }}>unfollow</button>
-                            : <button onClick={() => {
+                            : <button disabled={props.followingInProgress.some(id=>id===m.id)} onClick={() => {
+                                props.toggleFollowingProgress([true,m.id],m.id)
                                 axios.defaults.withCredentials = true
                                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${m.id}`, {},
                                     {
@@ -61,8 +66,9 @@ export const Users = (props: propsType) => {
                                         headers: {"API-KEY": "e8421c8d-f20b-4037-99e1-c0e74f0f447b"}
                                     })
                                     .then(res => {
-                                        /*if(res.data.resultCode===0)*/
+                                        if(res.data.resultCode===0)
                                         {
+                                            props.toggleFollowingProgress([false,m.id],m.id)
                                             props.follow(m.id)
                                         }
                                     })

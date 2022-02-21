@@ -1,7 +1,7 @@
 import classes from "./MyPost.module.css";
 import React, {ChangeEvent} from "react";
 import {Post} from "./Post/Post";
-import {PostType} from "../../../Redux/ProfileReducer";
+import {PostType} from "../../../Redux/profileReducer";
 import {KeyboardEvent} from "react";
 
 type propsType = {
